@@ -14,7 +14,8 @@ set terminal wxt
 set output
 """
 
-def plotTemplate(inputFileName: String, outputFileName: String) = s"""
+def plotTemplate(inputFileName: String, outputFileName: String, title: String) = s"""
+set title "${title}"
 set xrange [${xRange._1}:${xRange._2}]
 set yrange [${yRange._1}:${yRange._2}]
 set xtics (${xtics.map(t => "\"" + t._1 + "\" " + t._2).mkString(",")})
@@ -30,7 +31,7 @@ def output(o: String) = {
 }
 
 val command = (0 to 71) map { i =>
-  plotTemplate(s"Ey.vs.xy${i+10}.txt", s"Ey_vs_y${i}.png")
+  plotTemplate(s"Ey.vs.xy${i+10}.txt", s"Ey_vs_y${i}.png", "t = %.2f".format(6.666 * (1+i).toFloat))
 } reduce (_ + _)
 
 output(fileTemplate(command))
