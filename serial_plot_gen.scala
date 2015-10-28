@@ -20,6 +20,7 @@ set yrange [${yRange._1}:${yRange._2}]
 set xtics (${xtics.map(t => "\"" + t._1 + "\" " + t._2).mkString(",")})
 set output "${outputFileName}"
 plot "${inputFileName}" using 96 with lines title "${plotTitle}" lw 2 lc rgb "red"
+reset
 """
 
 def output(o: String) = {
