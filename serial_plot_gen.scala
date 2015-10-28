@@ -6,6 +6,8 @@ val xRange: (String, String) = ("0", "576")
 val yRange: (String, String) = ("-1.0e+12", "1.0e+12")
 val imageSize: (Int, Int) = (800, 600)
 val xtics: List[(String, Int)] = List("0.0" -> 0, "30.0" -> 185, "60.0" -> 370, "90.0" -> 555)
+val xLabel = "x [micro-m]"
+val lineNum = 96
 
 def fileTemplate(arg: String) = s"""
 set terminal pngcairo enhanced size ${imageSize._1},${imageSize._2} font "Arial,24"
@@ -19,8 +21,9 @@ set title "${title}"
 set xrange [${xRange._1}:${xRange._2}]
 set yrange [${yRange._1}:${yRange._2}]
 set xtics (${xtics.map(t => "\"" + t._1 + "\" " + t._2).mkString(",")})
+set xlabel "${xLabel}"
 set output "${outputFileName}"
-plot "${inputFileName}" using 96 with lines title "${plotTitle}" lw 2 lc rgb "red"
+plot "${inputFileName}" using ${lineNum} with lines title "${plotTitle}" lw 2 lc rgb "red"
 reset
 """
 
