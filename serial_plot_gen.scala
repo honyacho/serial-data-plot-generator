@@ -14,6 +14,7 @@ set terminal pngcairo enhanced size ${imageSize._1},${imageSize._2} font "Arial,
 ${arg}
 set terminal wxt
 set output
+reset
 """
 
 def plotTemplate(inputFileName: String, outputFileName: String, title: String) = s"""
@@ -24,7 +25,6 @@ set xtics (${xtics.map(t => "\"" + t._1 + "\" " + t._2).mkString(",")})
 set xlabel "${xLabel}"
 set output "${outputFileName}"
 plot "${inputFileName}" using ${lineNum} with lines title "${plotTitle}" lw 2 lc rgb "red"
-reset
 """
 
 def output(o: String) = {
