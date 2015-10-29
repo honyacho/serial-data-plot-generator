@@ -1,7 +1,7 @@
 import java.io.PrintWriter
 
 val plotFileName = "script.plt"
-val plotTitle = "D_e"
+val plotTitle = "D_i"
 val xRange: (String, String) = ("0", "576")
 val yRange: (String, String) = ("0", "0.3")
 val imageSize: (Int, Int) = (800, 600)
@@ -34,7 +34,7 @@ def output(o: String) = {
 }
 
 val command = (0 to 70) map { i =>
-  plotTemplate(s"De.vs.xy${i+10}.txt", s"De_vs_y${i}.png", "t = %.2f".format(6.666 * (1+i).toFloat))
+  plotTemplate(s"Di.vs.xy${i+10}.txt", s"Di_vs_y${i}.png", "t = %.2f".format(6.666 * (1+i).toFloat))
 } reduce (_ + _)
 
 output(fileTemplate(command))
